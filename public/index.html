@@ -2,13 +2,43 @@
 <html>
   <head>
     <title>Color Game</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+
+
   </head>
   <body>
-    test
+    <div class="container">
+      <div class="row my-5">
+        <div class="col">
+          <h1 class="title">Color Game!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="color-container red-container">
+            <div class="color-slider" id="redslide">
+            </div>
+          </div>
+          <div class="color-container green-container">
+            <div class="color-slider" id="greenslide">
+            </div>
+          </div>
+          <div class="color-container blue-container">
+            <div class="color-slider" id="blueslide">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+      </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script source="index.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>

@@ -1,0 +1,49 @@
+html, body{
+  color: #2b2b2b;
+}
+
+.title{
+  font-size: 5rem;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+
+.color-slider{
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+
+
+#redslide, #greenslide, #blueslide
+{
+  height: 15px;
+  margin: 10px 0px;
+  width: 350px;
+}
+
+#redslide .ui-slider-range
+{
+  background: red;
+}
+#redslide .ui-slider-handle
+{
+  border-color: red;
+}
+#greenslide .ui-slider-range
+{
+  background: green;
+}
+#greenslide .ui-slider-handle
+{
+  border-color: green;
+}
+#blueslide .ui-slider-range
+{
+  background: blue;
+}
+#blueslide .ui-slider-handle
+{
+  border-color: blue;
+}
