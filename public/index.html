@@ -6,8 +6,66 @@
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
   </head>
   <body>
+    <div id="scoreModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="score-container">
+              <h5 id="score" class="modal-title">Score:</h5>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid score-container">
+              <div class="row">
+                <div class="col text-center">
+                  <p class="score-swatch-title">Your Guess:</p>
+                  <div id="score-user-swatch" class="score-swatch"></div>
+                  <p class="rgb-value">R: <span id="rgb-user-r"></span></p>
+                  <p class="rgb-value">G: <span id="rgb-user-g"></span></p>
+                  <p class="rgb-value">B: <span id="rgb-user-b"></span></p>
+                </div>
+                <div class="col text-center">
+                  <p class="score-swatch-title">Given Swatch:</p>
+                  <div id="score-random-swatch" class="score-swatch"></div>
+                  <p class="rgb-value">R: <span id="rgb-random-r"></span></p>
+                  <p class="rgb-value">G: <span id="rgb-random-g"></span></p>
+                  <p class="rgb-value">B: <span id="rgb-random-b"></span></p>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid name-container d-none">
+              <div class="row">
+                <div class="col text-center">
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Name:</span>
+                    </div>
+                    <input id="name" type="text" class="form-control" aria-label="Large" placeholder="John Doe">
+                  </div>
+                  <small id="name_error"></small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="score-container">
+              <button id="getName" type="button" class="btn btn-info">☄️Save Score☄️</button>
+              <button type="button" class="playAgain btn btn-warning" data-dismiss="modal">🌻Play Again🌻</button>
+            </div>
+            <div class="name-container d-none">
+              <button id="saveScore" type="button" class="btn btn-info">☄️Save Score☄️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="row my-5">
         <div class="col">
@@ -15,11 +73,24 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <div class="card">
+        <div class="col-md-4 mb-4 mx-auto">
+          <div class="card drop-shadow">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <div class="row">
+                <div id="timer-col" class="col text-center">
+                  <button id="start" type="button" class="btn w-100 btn-warning">🌻Start🌻</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content-row" class="row d-none">
+        <div class="col-md-6 mb-4">
+          <div class="card drop-shadow">
+            <div class="card-body text-center">
+              <h5 class="card-title">Custom Sliders</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Adjust the RGB sliders to the amounts present in the random swatch.</h6>
               <div class="color-slider-container text-center">
                 <div id="slider-swatch-r" class="slider-swatch"><p id="slider-num-r" class="slider-num"></p></div>
                 <div class="color-slider" id="redslide">
@@ -35,12 +106,23 @@
                 <div class="color-slider" id="blueslide">
                 </div>
               </div>
+              <button id="lockIn" type="button" class="btn btn-success w-80" data-toggle="modal" data-target="#scoreModal">🧃Lock In🧃</button>
             </div>
           </div>
-
         </div>
-        <div class="col-md-6">
-
+        <div class="col-md-6 mb-4">
+          <div class="card drop-shadow">
+            <div class="card-body text-center">
+              <h5 class="card-title">Random Swatch</h5>
+              <h6 class="card-subtitle mb-2 text-muted">This swatch is generated at random using red, green, and blue values between 0 and 255.</h6>
+              <div id="random-swatch"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="playAgain-container" class="row d-none">
+        <div class="col">
+          <button type="button" class="playAgain btn btn-warning w-100">🌻Play Again🌻</button>
         </div>
       </div>
     </div>
