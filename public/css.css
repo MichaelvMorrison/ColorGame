@@ -5,6 +5,18 @@ html, body{
   font-family: 'Open Sans', sans-serif !important;
 }
 
+.leaderboard-link{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.game-link{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
 .title{
   font-size: 5rem;
   text-align: center;
@@ -46,12 +58,16 @@ html, body{
   opacity: 0.75 !important;
 }
 
+table.dataTable tbody tr {
+    background-color: #343A40;
+}
+
 #start{
   font-size: 1.25rem;
   font-weight: 500;
 }
 
-#score{
+.score-h5{
   font-size: 1.75rem;
   font-weight: 600;
 }

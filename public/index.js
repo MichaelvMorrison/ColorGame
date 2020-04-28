@@ -2,6 +2,7 @@ let r = 128, g = 128, b = 128;
 let user_r = 128, user_g = 128, user_b = 128;
 let time = 0;
 let name = "";
+let score = 0;
 let incrementTimer;
 
 function initializeSliders(){
@@ -38,15 +39,16 @@ function slide(){
 }
 
 function resetSliders(){
-  $("#redslide").slider("value", 129);
-  $("#greenslide").slider("value", 129);
-  $("#blueslide").slider("value", 129);
-  $("#slider-swatch-r").css("background-color", "rgba(255,0,0,0.5)");
-  $("#slider-swatch-g").css("background-color", "rgba(0,255,0,0.5)");
-  $("#slider-swatch-b").css("background-color", "rgba(0,0,255,0.5)");
-  $("#slider-num-r").html("128");
-  $("#slider-num-g").html("128");
-  $("#slider-num-b").html("128");
+  let _r = Math.floor(Math.random() * 256) + 1, _g = Math.floor(Math.random() * 256) + 1, _b = Math.floor(Math.random() * 256) + 1;
+  $("#redslide").slider("value", _r);
+  $("#greenslide").slider("value", _g);
+  $("#blueslide").slider("value", _b);
+  $("#slider-swatch-r").css("background-color", "rgba(255,0,0,"+_r/255+")");
+  $("#slider-swatch-g").css("background-color", "rgba(0,255,0,"+_g/255+")");
+  $("#slider-swatch-b").css("background-color", "rgba(0,0,255,"+_b/255+")");
+  $("#slider-num-r").html(_r);
+  $("#slider-num-g").html(_g);
+  $("#slider-num-b").html(_b);
 }
 
 function getRandomSwatch(){
@@ -86,8 +88,18 @@ function resetTimer(){
   stopTimer();
 }
 
+function getScore(){
+  let d = 442 - Math.pow(Math.pow(Math.abs(r - user_r),2) + Math.pow(Math.abs(g - user_g),2) + Math.pow(Math.abs(b - user_b),2),0.5);
+  let t = Math.pow((60-time)/60,4);
+  console.log(Math.pow(d,1.1));
+  console.log(t);
+  score = Math.round(Math.pow(d,1.1)*t*1.23);
+}
+
 function lockIn(){
   stopTimer();
+  getScore();
+  $("#score").html(score);
   $("#score-user-swatch").css("background-color","rgb("+user_r+","+user_g+","+user_b+")");
   $("#score-random-swatch").css("background-color","rgb("+r+","+g+","+b+")");
   $("#lockIn").addClass("d-none");
@@ -101,6 +113,7 @@ function lockIn(){
 }
 
 function resetModal(){
+  $("#score").html("");
   $(".name-container").addClass("d-none");
   $(".score-container").removeClass("d-none");
   $("#name").val("");
@@ -122,6 +135,7 @@ function resetGame(){
   resetTimer();
   startTimer();
   resetModal();
+  score = 0;
 }
 
 function getName(){
@@ -129,11 +143,29 @@ function getName(){
   $(".score-container").addClass("d-none");
 }
 
-function saveScore(){
+async function saveScore(){
   if($("#name").val() && $("#name").val() != ""){
     name = $("#name").val();
     $("#scoreModal").modal("hide");
-    console.log(name);
+
+    var data = {
+      name: name,
+      score: score,
+      user_swatch: "rgb("+user_r+","+user_g+","+user_b+")",
+      random_swatch: "rgb("+r+","+g+","+b+")",
+      date: new Date().toString()
+    }
+    console.log(data);
+    var options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+
+    var response = await fetch('/saveScore', options);
+    var responseData = await response;
   }
   else{
     $("#name_error").html("Please enter a valid name")

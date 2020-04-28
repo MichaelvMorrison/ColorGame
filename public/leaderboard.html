@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>📈Leaderboard📈</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link rel="stylesheet" href="css.css" />
+  </head>
+  <body>
+    <div class="game-link">
+      <a href="../"><p>🟨Play Game🟨</p></a>
+    </div>
+
+    <div class="container">
+      <div class="row my-5">
+        <div class="col">
+          <h1 class="title">Leaderboard!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <table id="leaderboard" class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Score</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard_body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="leaderboard.js"></script>
+  </body>
+</html>
